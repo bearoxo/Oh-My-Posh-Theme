@@ -1,0 +1,392 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "console_title_template": " {{ .Host }}   |   {{ .PWD }} ",
+  "final_space": true,
+  "version": 4,
+  "upgrade": {
+    "notice": true,
+    "interval": "168h",
+    "auto": false,
+    "source": "cdn"
+  },
+  "palette": {
+    "dusk": "#18354c",
+    "dawn": "#ecc100",
+    "foggy": "#6a7ba2",
+    "rose": "#ffdfde",
+    "coffee": "#815854",
+    "latte": "#f9ebde",
+    "berries": "#ffdfb9",
+    "cream": "#a4193d",
+    "red": "#ce0f0f",
+    "orange": "#ff9100",
+    "yellow":"#fffb00",
+    "pink": "#ff8be6", 
+    "puple": "#b388ff",
+    "blue": "#0077ff",
+    "cyan": "#66d9ef",
+    "green": "#0fce29"
+  },
+  "palettes": {
+    "template": "dusk_dawn",
+    "list": {
+      "dusk_dawn": {
+        "color_1": "p:dusk",
+        "color_2": "p:dawn"
+      },
+      "coffee_latte": {
+        "color_1": "p:coffee",
+        "color_2": "p:latte"
+      },
+      "berries_cream": {
+        "color_1": "p:cream",
+        "color_2": "p:berries"
+      },
+      "foggy_rose": {
+        "color_1": "p:foggy",
+        "color_2": "p:rose"
+      }
+    }
+  },
+  "transient_prompt": {
+    "foreground": "p:color_2",
+    "background": "transparent",
+    "template": "{{ if ne .Code 0 }}<p:red>{{ else }}<p:green>{{ end }}\uf111</>{{ if lt .PromptCount 10 }}   {{ else if lt .PromptCount 100 }}  {{ else }} {{ end }}{{.PromptCount }} | {{ .HostName }} \uf120 "
+  },
+  "secondary_prompt": {
+    "background": "transparent",
+    "foreground": "p:color_2",
+    "template": "   \u2517\u2501\uf120 "
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "options": {
+            "time_format": " 3:04:05 PM "
+          },
+          "leading_diamond": "\ue0b6",
+          "template": " \uf43a \ue0b1{{ .CurrentDate | date .Format }} ",
+          "foreground": "p:color_2",
+          "background": "p:color_1",
+          "type": "time",
+          "style": "diamond"
+        },
+        {
+          "options": {
+            "time_format": " Mon, 2/Jan/2006"
+          },
+          "trailing_diamond": "\ue0b4",
+          "template": "\ue0b4 \udb83\ude17 \ue0b1{{ .CurrentDate | date .Format }} ",
+          "foreground": "p:color_1",
+          "background": "p:color_2",
+          "type": "time",
+          "style": "diamond"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "filler": "<p:color_2>\u2594</>",
+      "overflow": "hide",
+      "segments": [
+        {
+          "options": {
+            "paused_icon": "\uf8e3 ",
+            "playing_icon": "\ue602 ",
+            "stopped_icon": "\uf04d "
+          },
+          "template": " {{ .Icon }}{{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} \ue0b3 \uf001  ",
+          "foreground": "p:color_1",
+          "leading_diamond": "\ue0b6",
+          "background": "p:color_2",
+          "type": "spotify",
+          "style": "diamond"
+        },
+        {
+          "options": {
+            "paused_icon": "\uf8e3 ",
+            "playing_icon": "\ue602 ",
+            "stopped_icon": "\uf04d "
+          },
+          "template": " {{ .Icon }}{{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
+          "foreground": "p:white",
+          "leading_diamond": "\ue0b6",
+          "background": "p:red",
+          "type": "ytm",
+          "style": "diamond"
+        },
+        {
+          "options": {
+            "always_enabled": true
+          },
+          "template": "  {{ .FormattedMs }} \ue0b3 \uf252 ",
+          "foreground": "p:color_2",
+          "leading_diamond": "\ue0b6",
+          "background": "p:color_1",
+          "type": "executiontime",
+          "style": "diamond"
+        },
+        {
+          "options": {
+            "always_enabled": true
+          },
+          "template": " {{ if gt .Code 0 }}{{ reason .Code }}{{ else }} \udb83\ude1e {{ end }} ",
+          "trailing_diamond": "\ue0b4",
+          "powerline_symbol": "\ue0b4",
+          "background": "p:green",
+          "foreground": "p:color_1",
+          "type": "status",
+          "style": "powerline",
+          "background_templates": [
+            "{{ if gt .Code 0 }}p:red{{ end }}"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "options": {
+            "windows": "\uf17a ",
+            "macos": "\uf176 ",
+            "linux": "\ue712 ",
+            "ubuntu": "\uf31b ",
+            "debian": "\uf306 ",
+            "redhat": "\uf316 ",
+            "kali": "\uf327 ",
+            "arch": "\uf303 "
+          },
+          "template": " {{ if .WSL }}WSL at {{ end }}{{ .Icon }}\ue0b1",
+          "foreground": "p:color_2",
+          "powerline_symbol": "\ue0b6",
+          "background": "p:color_1",
+          "type": "os",
+          "style": "powerline",
+          "invert_powerline": true
+        },
+        {
+          "options": {
+            "folder_icon": "\uf07c ",
+            "folder_separator_icon": "\ue0b1 ",
+            "home_icon": "\uf015 ",
+            "style": "agnoster"
+          },
+          "template": "{{ .Path }} ",
+          "foreground": "p:color_2",
+          "powerline_symbol": "\ue0b4",
+          "background": "p:color_1",
+          "type": "path",
+          "style": "powerline"
+        }
+      ],
+      "newline": true
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "overflow": "hide",
+      "leading_diamond": "\ue0b6",
+      "trailing_diamond": "\ue0b4",
+      "force": true,
+      "segments": [
+        {
+          "options": {
+            "cache_duration": "none",
+            "display_mode": "files",
+            "fetch_version": true
+          },
+          "template": " {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }} \ue0b3 \udb82\udeae  ",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "background": "p:color_2",
+          "foreground": "p:color_1",
+          "type": "dotnet",
+          "style": "diamond"
+        },
+        {
+          "options": {
+            "cache_duration": "none",
+            "display_mode": "files",
+            "fetch_version": true
+          },
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} \ue0b3 \ue65e  ",
+          "trailing_diamond": "\ue0b4",
+          "background": "p:color_2",
+          "foreground": "p:color_1",
+          "type": "go",
+          "style": "diamond",
+          "invert_powerline": true
+        },
+        {
+          "options": {
+            "cache_duration": "none",
+            "display_mode": "files",
+            "fetch_version": true,
+            "fetch_virtual_env": false
+          },
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} \ue0b3 \ue235  ",
+          "trailing_diamond": "\ue0b4",
+          "background": "p:color_2",
+          "foreground": "p:color_1",
+          "type": "python",
+          "style": "diamond"
+        },
+        {
+          "options": {
+            "cache_duration": "none",
+            "display_mode": "files",
+            "fetch_version": true
+          },
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} \ue0b3 \ue791  ",
+          "leading_diamond": "\ue0b4",
+          "trailing_diamond": "\ue0b4",
+          "background": "p:color_2",
+          "foreground": "p:color_1",
+          "type": "ruby",
+          "style": "diamond"
+        },
+        {
+          "template": " {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} \ue0b3 \ue7ad  ",
+          "trailing_diamond": "\ue0b4",
+          "type": "aws",
+          "style": "diamond",
+          "background": "p:color_2",
+          "foreground": "p:color_1"
+        },
+        {
+          "options": {
+            "cache_duration": "none",
+            "display_mode": "files",
+            "fetch_version": false
+          },
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} \ue0b3 \uf0e7  ",
+          "trailing_diamond": "\ue0b4",
+          "background": "p:color_2",
+          "foreground": "p:color_1",
+          "type": "azfunc",
+          "style": "diamond",
+          "invert_powerline": true
+        },
+        {
+          "options": {
+            "cache_duration": "none",
+            "fetch_version": true
+          },
+          "template": " {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} \ue0b3 \ued0d  ",
+          "trailing_diamond": "\ue0b4",
+          "background": "p:color_2",
+          "foreground": "p:color_1",
+          "type": "node",
+          "style": "diamond",
+          "invert_powerline": true
+        },
+        {
+          "options": {
+            "cache_duration": "none"
+          },
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Name }}{{ .Name }} {{ end }}{{ if .Version }}| \uf487 v{{.Version}} {{ end }}{{ end }}",
+          "background": "p:color_1",
+          "foreground": "p:color_2",
+          "trailing_diamond": "\ue0b4",
+          "type": "project",
+          "style": "diamond"
+        },
+        {
+          "options": {
+            "branch_icon": " \ue725 | ",
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "fetch_user": true
+          },
+          "trailing_diamond": "\ue0b4",
+          "template": "<p:color_1>{{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 </>{{ .Working.String }}{{ end }}<p:color_1>{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 </><p:yellow>{{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0 }} \udb80\udd93 {{ .StashCount }}{{ end }} ",
+          "foreground": "p:yellow",
+          "background": "p:green",
+          "type": "git",
+          "style": "diamond",
+          "background_templates": [
+            "{{ if and (.Working.Changed) (not .Staging.Changed) }}p:red{{ end }}",
+            "{{ if and (.Working.Changed) (.Staging.Changed) }}p:orange{{ end }}",
+            "{{ if and (not .Working.Changed) (.Staging.Changed) }}p:yellow{{ end }}",
+            "{{ if gt .Ahead 0 }}p:pink{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:purple{{ end }}",
+            "{{ if gt .Behind 0 }}p:blue{{ end }}"
+          ],
+          "foreground_templates": [
+            "{{ if or (not .Working.Changed) (.Staging.Changed) }}p:red{{ end }}",
+            "{{ if and (.Working.Changed) (.Staging.Changed) }}p:red{{ end }}",
+            "{{ if and (not .Working.Changed) (.Staging.Changed) }}p:green{{ end }}"
+          ]
+        },
+        {
+          "template": "<parentForeground>{{ if eq \"<.parentBackground>\" \"<p:red>\" }}test{{ end }}</>",
+          "foreground": "parentForeground",
+          "type": "text"
+        },
+        {
+          "template": "{{ if not .Segments.Git }}non-git{{ end }}",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "foreground": "p:color_1",
+          "background": "p:green",
+          "type": "text",
+          "style": "diamond"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "options": {
+            "cache_duration": "none"
+          },
+          "template": "  \u2517\u2501\u2501\u2501\u2501 {{ .HostName }} \uf120",
+          "foreground": "p:color_2",
+          "type": "text",
+          "style": "diamond"
+        }
+      ],
+      "newline": true
+    },
+    {
+      "type": "rprompt",
+      "segments": [  
+        {
+          "options": {
+            "cache_duration": "none",
+            "display_host": false,
+            "display_user": true
+          },
+          "template": " {{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }} \ue0b3 \uf007 ",
+          "foreground": "p:color_2",
+          "powerline_symbol": "\ue0b6",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "background": "p:color_1",
+          "type": "session",
+          "style": "diamond",
+          "invert_powerline": true
+        },
+        {
+          "options": {
+            "cache_duration": "none"
+          },
+          "template": "  \udb80\udf0b  ",
+          "foreground": "p:color_1",
+          "trailing_diamond": "\ue0b4",
+          "background": "p:green",
+          "type": "root",
+          "style": "diamond"
+        }
+      ]
+    }
+  ]  
+}
