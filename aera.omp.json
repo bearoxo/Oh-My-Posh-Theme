@@ -28,7 +28,7 @@
     "green": "#0fce29"
   },
   "palettes": {
-    "template": "coffee_latte",
+    "template": "dusk_dawn",
     "list": {
       "dusk_dawn": {
         "color_1": "p:dusk",
