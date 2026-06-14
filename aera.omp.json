@@ -330,15 +330,6 @@
           ]
         },
         {
-          "type": "text",
-          "template": "test \udb80\udf0b ",
-          "style": "diamond",
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4",
-          "foreground": "p:red",
-          "background": "p:pink"
-        },
-        {
           "template": "{{ if not .Segments.Git }}non-git{{ end }}",
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b4",
