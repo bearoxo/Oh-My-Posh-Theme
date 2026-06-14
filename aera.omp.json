@@ -22,13 +22,13 @@
     "orange": "#ff9100",
     "yellow":"#fffb00",
     "pink": "#ff8be6", 
-    "puple": "#b388ff",
+    "purple": "#b388ff",
     "blue": "#0077ff",
     "cyan": "#66d9ef",
     "green": "#0fce29"
   },
   "palettes": {
-    "template": "dusk_dawn",
+    "template": "coffee_latte",
     "list": {
       "dusk_dawn": {
         "color_1": "p:dusk",
@@ -138,7 +138,7 @@
           "trailing_diamond": "\ue0b4",
           "powerline_symbol": "\ue0b4",
           "background": "p:green",
-          "foreground": "p:color_1",
+          "foreground": "p:dusk",
           "type": "status",
           "style": "powerline",
           "background_templates": [
@@ -305,8 +305,8 @@
             "fetch_user": true
           },
           "trailing_diamond": "\ue0b4",
-          "template": "<p:color_1>{{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 </>{{ .Working.String }}{{ end }}<p:color_1>{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 </><p:yellow>{{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0 }} \udb80\udd93 {{ .StashCount }}{{ end }} ",
-          "foreground": "p:yellow",
+          "template": "<p:dusk>{{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 </>{{ .Working.String }}{{ end }}<p:dusk>{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 </>{{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \udb80\udd93 {{ .StashCount }}{{ end }} ",
+          "foreground": "p:dusk",
           "background": "p:green",
           "type": "git",
           "style": "diamond",
@@ -314,20 +314,29 @@
             "{{ if and (.Working.Changed) (not .Staging.Changed) }}p:red{{ end }}",
             "{{ if and (.Working.Changed) (.Staging.Changed) }}p:orange{{ end }}",
             "{{ if and (not .Working.Changed) (.Staging.Changed) }}p:yellow{{ end }}",
-            "{{ if gt .Ahead 0 }}p:pink{{ end }}",
-            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:purple{{ end }}",
-            "{{ if gt .Behind 0 }}p:blue{{ end }}"
+            "{{ if and (not .Working.Changed) (not .Staging.Changed) (gt .Ahead 0) (eq .Behind 0) }}p:pink{{ end }}",
+            "{{ if and (not .Working.Changed) (not .Staging.Changed) (gt .Ahead 0) (gt .Behind 0) }}p:purple{{ end }}",
+            "{{ if and (not .Working.Changed) (not .Staging.Changed) (eq .Ahead 0) (gt .Behind 0) }}p:blue{{ end }}",
+            "{{ if gt .StashCount 0 }}p:cyan{{ end }}"
           ],
           "foreground_templates": [
-            "{{ if or (not .Working.Changed) (.Staging.Changed) }}p:red{{ end }}",
+            "{{ if and (.Working.Changed) (not .Staging.Changed) }}p:dusk{{ end }}",
             "{{ if and (.Working.Changed) (.Staging.Changed) }}p:red{{ end }}",
-            "{{ if and (not .Working.Changed) (.Staging.Changed) }}p:green{{ end }}"
+            "{{ if and (not .Working.Changed) (.Staging.Changed) }}p:red{{ end }}",
+            "{{ if and (not .Working.Changed) (not .Staging.Changed) (gt .Ahead 0) (eq .Behind 0) }}p:red{{ end }}",
+            "{{ if and (not .Working.Changed) (not .Staging.Changed) (gt .Ahead 0) (gt .Behind 0) }}p:red{{ end }}",
+            "{{ if and (not .Working.Changed) (not .Staging.Changed) (eq .Ahead 0) (gt .Behind 0) }}p:dusk{{ end }}",
+            "{{ if gt .StashCount 0 }}p:dusk{{ end }}"
           ]
         },
         {
-          "template": "<parentForeground>{{ if eq \"<.parentBackground>\" \"<p:red>\" }}test{{ end }}</>",
-          "foreground": "parentForeground",
-          "type": "text"
+          "type": "text",
+          "template": "test \udb80\udf0b ",
+          "style": "diamond",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "foreground": "p:red",
+          "background": "p:pink"
         },
         {
           "template": "{{ if not .Segments.Git }}non-git{{ end }}",
@@ -380,9 +389,9 @@
             "cache_duration": "none"
           },
           "template": "  \udb80\udf0b  ",
-          "foreground": "p:color_1",
           "trailing_diamond": "\ue0b4",
           "background": "p:green",
+          "foreground": "p:dusk",
           "type": "root",
           "style": "diamond"
         }
