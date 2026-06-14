@@ -333,7 +333,7 @@
           "template": "{{ if not .Segments.Git }}non-git{{ end }}",
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b4",
-          "foreground": "p:color_1",
+          "foreground": "p:dusk",
           "background": "p:green",
           "type": "text",
           "style": "diamond"
