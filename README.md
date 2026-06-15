@@ -36,8 +36,13 @@ notepad $PROFILE
 $themeGit = "https://raw.githubusercontent.com/bearoxo/Oh-My-Posh-Theme/refs/heads/main/aera.omp.json"
 $themepPath = "C:\TEMP\aera.omp.json"
 
+$themeDir = Split-Path -Path $themePath
+if (-not (Test-Path -Path $themeDir)) {
+    New-Item -ItemType Directory -Path $themeDir -Force | Out-Null
+}
+
 if (-not (Test-Path -Path $themePath)) { 
-  curl $themeGit > $themePath
+    Invoke-RestMethod -Uri $themeGit -OutFile $themePath
 }
    
 oh-my-posh init pwsh --config $themePath | Invoke-Expression
