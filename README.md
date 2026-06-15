@@ -29,13 +29,20 @@ winget install JanDeDobbeleer.OhMyPosh --source winget
 notepad $PROFILE
 ```
 
-3. Paste script below & save.
+3. I'm using the `DepartureMono` Nerd Font. You can download it [here](https://www.nerdfonts.com/font-downloads). Install & change the font in the terminal settings. 
+
+4. Paste script below & save.
 ``` pwsh
 $themeGit = "https://raw.githubusercontent.com/bearoxo/Oh-My-Posh-Theme/refs/heads/main/aera.omp.json"
 $themepPath = "C:\TEMP\aera.omp.json"
 
+$themeDir = Split-Path -Path $themePath
+if (-not (Test-Path -Path $themeDir)) {
+    New-Item -ItemType Directory -Path $themeDir -Force | Out-Null
+}
+
 if (-not (Test-Path -Path $themePath)) { 
-  curl $themeGit > $themePath
+    Invoke-RestMethod -Uri $themeGit -OutFile $themePath
 }
    
 oh-my-posh init pwsh --config $themePath | Invoke-Expression
@@ -43,7 +50,7 @@ oh-my-posh init pwsh --config $themePath | Invoke-Expression
 clear
 ```
 
-4. Open `.omp.json` theme file.
+5. Open `.omp.json` theme file.
 ``` pwsh
 notepad $ThemePath
 ```
