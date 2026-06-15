@@ -12,7 +12,7 @@
   "palette": {
     "dusk": "#18354c",
     "dawn": "#ecc100",
-    "foggy": "#6a7ba2",
+    "lavender": "#6a7ba2",
     "rose": "#ffdfde",
     "coffee": "#815854",
     "latte": "#f9ebde",
@@ -28,7 +28,7 @@
     "green": "#0fce29"
   },
   "palettes": {
-    "template": "coffee_latte",
+    "template": "dusk_dawn",
     "list": {
       "dusk_dawn": {
         "color_1": "p:dusk",
@@ -42,8 +42,8 @@
         "color_1": "p:cream",
         "color_2": "p:berries"
       },
-      "foggy_rose": {
-        "color_1": "p:foggy",
+      "lavender_rose": {
+        "color_1": "p:lavender",
         "color_2": "p:rose"
       }
     }

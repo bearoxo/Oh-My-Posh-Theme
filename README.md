@@ -13,23 +13,23 @@
 
 <img width="1146" height="153" alt="image" src="https://github.com/user-attachments/assets/8fe9bc87-123a-4abe-9024-41266b7b7672" />  
 
-`foggy_rose`
+`lavender_rose`
 
 <img width="1146" height="153" alt="image" src="https://github.com/user-attachments/assets/f7fbb5b9-2780-4064-bcf7-271e115456a3" />  
 
 ### Steps  
 
-1. Install `Oh-My-Posh`
+1. Install `Oh-My-Posh`.
 ``` pwsh
 winget install JanDeDobbeleer.OhMyPosh --source winget
 ```
 
-2. Open `Microsoft.PowerShell_profile.ps1` file
+2. Open `Microsoft.PowerShell_profile.ps1` file.
 ``` pwsh
 notepad $PROFILE
 ```
 
-3. Paste script below & save
+3. Paste script below & save.
 ``` pwsh
 $themeGit = "https://raw.githubusercontent.com/bearoxo/Oh-My-Posh-Theme/refs/heads/main/aera.omp.json"
 $themepPath = "C:\TEMP\aera.omp.json"
@@ -48,7 +48,7 @@ clear
 notepad $ThemePath
 ```
 
-5. Change the theme color to one of the color palette presets
+5. Change the theme color to one of the color palette presets.
 ``` json
 "palettes": {
   "template": "dusk_dawn"
