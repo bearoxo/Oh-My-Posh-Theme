@@ -29,7 +29,9 @@ winget install JanDeDobbeleer.OhMyPosh --source winget
 notepad $PROFILE
 ```
 
-3. Paste script below & save
+3. I'm using the `DepartureMono` Nerd Font. You can download it [here](https://www.nerdfonts.com/font-downloads). Install & change the font in the terminal settings. 
+
+4. Paste script below & save
 ``` pwsh
 $themeGit = "https://raw.githubusercontent.com/bearoxo/Oh-My-Posh-Theme/refs/heads/main/aera.omp.json"
 $themepPath = "C:\TEMP\aera.omp.json"
@@ -43,12 +45,12 @@ oh-my-posh init pwsh --config $themePath | Invoke-Expression
 clear
 ```
 
-4. Open `.omp.json` theme file.
+5. Open `.omp.json` theme file.
 ``` pwsh
 notepad $ThemePath
 ```
 
-5. Change the theme color to one of the color palette presets
+6. Change the theme color to one of the color palette presets
 ``` json
 "palettes": {
   "template": "dusk_dawn"
